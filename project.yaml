@@ -1,0 +1,25 @@
+specVersion: 0.2.0
+name: liquidity-subql
+version: 1.0.0
+description: ''
+repository: ''
+schema:
+  file: ./schema.graphql
+network:
+  endpoint: wss://staging-rpc.parallel.fi
+  genesisHash: '0x4b7197c15f859e9721c5e373202ee5fb830251d00eb1661d947a77d1b572f581'
+dataSources:
+  - kind: substrate/Runtime
+    startBlock: 10000
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleBlock
+          kind: substrate/BlockHandler
+        - handler: handleEvent
+          kind: substrate/EventHandler
+          filter:
+            module: balances
+            method: Deposit
+        - handler: handleCall
+          kind: substrate/CallHandler

@@ -1,0 +1,35 @@
+{
+  "name": "liquidity-subql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "prepack": "rm -rf dist && npm build",
+    "test": "jest",
+    "codegen": "./node_modules/.bin/subql codegen",
+    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package amm-rpc/api-interfaces --input ./src/api-interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package amm-rpc/api-interfaces --endpoint ./src/api-interfaces/amm.json --output ./src/api-interfaces --strict"
+  },
+  "homepage": "https://github.com/subquery/subql-starter",
+  "repository": "github:subquery/subql-starter",
+  "files": [
+    "dist",
+    "schema.graphql",
+    "project.yaml"
+  ],
+  "author": "parallel team",
+  "license": "MIT",
+  "dependencies": {
+    "@parallel-finance/types": "^1.5.5",
+    "@polkadot/types": "^7.12.1"
+  },
+  "devDependencies": {
+    "@polkadot/api": "^7.12.1",
+    "@subql/cli": "latest",
+    "@subql/types": "latest",
+    "typescript": "^4.1.3",
+    "@polkadot/typegen": "^7.12.1",
+    "ts-node": "^10.7.0"
+  }
+}
